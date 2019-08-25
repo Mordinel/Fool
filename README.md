@@ -15,11 +15,14 @@ eg:
 
 The following mime types are currently supported by fool:
 - gif
+- jpg, jpe, jpeg
 - png
-- jpg, jpeg
 
 ## Building
 ```
 cd src
 gcc fool.c -o fool
 ```
+
+## References
+[File Signature List](https://www.garykessler.net/library/file_sigs.html)
