@@ -126,6 +126,7 @@ int main(int argc, char *argv[]) {
     fclose(out_file);
 
     free(magic_bytes);
+    free(magic_trailer);
     free(extension);
 
     return 0;
