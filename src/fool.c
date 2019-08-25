@@ -13,14 +13,19 @@ void open_file_if_possible(char *path, FILE **file, char *type) {
     }
 }
 
-void write_bytes(char **bytes, FILE **in_file, FILE **out_file) {
+void write_bytes(char **magic_bytes, char **magic_trailer, FILE **in_file, FILE **out_file) {
     int i, c;
 
-    for(i = 0; (c = *(*bytes + i)) != 0x0; i++) {
+    for(i = 0; (c = *(*magic_bytes + i)) != 0x0; i++) {
         fputc(c, *out_file);
     }
     while ((c = fgetc(*in_file)) != EOF) {
         fputc(c, *out_file);
+    }
+    if (*magic_trailer != NULL) {
+        for(i = 0; (c = *(*magic_trailer + i)) != 0x0; i++) {
+            fputc(c, *out_file);
+        }
     }
 }
 
@@ -50,7 +55,7 @@ char *get_extension(char *str) {
     return extension;
 }
 
-void load_magic_bytes(char **magic_bytes, char *extension) {
+void load_magic_bytes(char **magic_bytes, char **magic_trailer, char *extension) {
     int i;
     int magic_bytes_len = strlen(extension);
     char *extension_lower = (char *)malloc(sizeof(char) * magic_bytes_len);
@@ -61,10 +66,16 @@ void load_magic_bytes(char **magic_bytes, char *extension) {
 
     if (strncmp(extension_lower, "gif", 4) == 0) {
         allocate_magic_bytes(magic_bytes, GIF_BYTES);
+
     } else if((strncmp(extension_lower, "jpg", 4) == 0) ||
               (strncmp(extension_lower, "jpe", 4) == 0) ||
               (strncmp(extension_lower, "jpeg", 5) == 0)) {
         allocate_magic_bytes(magic_bytes, JPG_BYTES);
+
+    } else if(strncmp(extension_lower, "png", 4) == 0) {
+        allocate_magic_bytes(magic_bytes, PNG_BYTES);
+        allocate_magic_bytes(magic_trailer, PNG_TRAILER);
+
     } else {
         *magic_bytes = NULL;
     }
@@ -80,7 +91,7 @@ void allocate_magic_bytes(char **magic_bytes, char *bytes) {
 
 int main(int argc, char *argv[]) {
     FILE *in_file, *out_file;
-    char *magic_bytes, *extension;
+    char *magic_bytes, *magic_trailer, *extension;
 
     if (argc != 3) {
         fprintf(stderr, "Usage:\n%s [IN_FILE] [OUT_FILE.EXTENSION]\n", argv[0]);
@@ -101,10 +112,11 @@ int main(int argc, char *argv[]) {
 
     out_file = fopen(argv[2], "w");
 
-    load_magic_bytes(&magic_bytes, extension);
+    magic_bytes = magic_trailer = NULL;
+    load_magic_bytes(&magic_bytes, &magic_trailer, extension);
 
     if (magic_bytes != NULL) {
-        write_bytes(&magic_bytes, &in_file, &out_file);
+        write_bytes(&magic_bytes, &magic_trailer, &in_file, &out_file);
     } else {
         fprintf(stderr, "Extension: \"%s\" not supported\n", extension);
         remove(argv[2]);
