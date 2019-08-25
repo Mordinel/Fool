@@ -20,5 +20,6 @@ The following mime types are currently supported by fool:
 
 ## Building
 ```
+cd src
 gcc fool.c -o fool
 ```
