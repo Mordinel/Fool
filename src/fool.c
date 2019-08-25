@@ -40,7 +40,6 @@ int main(int argc, char *argv[]) {
     }
 
     out_file = fopen(argv[2], "w");
-    free(out_file);
 
     magic_bytes = (char *)malloc(sizeof(char)*7);
     strncpy(magic_bytes, "\x47\x49\x46\x38\x39\x61", 7);
