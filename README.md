@@ -21,7 +21,7 @@ The following extensions types are currently supported by fool:
 ## Building
 ```
 cd src
-gcc fool.c -o fool
+gcc -W -Wall -pedantic -g fool.c -o fool
 ```
 
 ## References
