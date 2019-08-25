@@ -61,6 +61,8 @@ void load_magic_bytes(char **magic_bytes, char *extension) {
 
     if (strncmp(extension_lower, "gif", 4) == 0) {
         allocate_magic_bytes(magic_bytes, GIF_BYTES);
+    } else if((strncmp(extension_lower, "jpg", 4) == 0) || (strncmp(extension_lower, "jpeg", 5) == 0 )) {
+        allocate_magic_bytes(magic_bytes, JPG_BYTES);
     } else {
         *magic_bytes = NULL;
     }
