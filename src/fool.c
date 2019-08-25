@@ -1,3 +1,8 @@
+/*
+ *  fool.c
+ *  Authored by: Mason Soroka-Gill
+ */
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>

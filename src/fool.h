@@ -1,3 +1,8 @@
+/*
+ *  fool.h
+ *  Authored by: Mason Soroka-Gill
+ */
+
 #ifndef FOOL_H
 #define FOOL_H
 
