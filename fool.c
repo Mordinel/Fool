@@ -8,7 +8,7 @@ void open_file_if_possible(char *path, FILE **file, char *type) {
         fprintf(stderr, "\"%s\" can not be accessed for \"%s\".\n", path, type);
         *file = NULL;
     } else {
-        *file = fopen(path, type); 
+        *file = fopen(path, type);
     }
 }
 
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     if (code_file == NULL) {
        return 1;
     }
-    
+
     out_file = fopen(argv[2], "w");
     free(out_file);
 
