@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     int in_file_length;
 
     if (argc != 3) {
-        fprintf(stderr, "Usage:\n%s [infile] [outfile]\n", argv[0]);
+        fprintf(stderr, "Usage:\n%s [IN_FILE] [OUT_FILE.EXTENSION]\n", argv[0]);
         return 1;
     }
 
