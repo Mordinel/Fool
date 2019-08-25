@@ -13,7 +13,7 @@ eg:
 ./fool payload.php payload.png
 ```
 
-The following mime types are currently supported by fool:
+The following extensions types are currently supported by fool:
 - gif
 - jpg, jpe, jpeg
 - png
