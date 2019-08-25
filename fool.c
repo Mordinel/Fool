@@ -25,18 +25,18 @@ void write_bytes(char **bytes, FILE **in_file, FILE **out_file) {
 }
 
 int main(int argc, char *argv[]) {
-    FILE *code_file;
+    FILE *in_file;
     FILE *out_file;
     char *magic_bytes;
-    int code_file_length;
+    int in_file_length;
 
     if (argc != 3) {
         fprintf(stderr, "Usage:\n%s [infile] [outfile]\n", argv[0]);
         return 1;
     }
 
-    open_file_if_possible(argv[1], &code_file, "r");
-    if (code_file == NULL) {
+    open_file_if_possible(argv[1], &in_file, "r");
+    if (in_file == NULL) {
        return 1;
     }
 
@@ -46,9 +46,9 @@ int main(int argc, char *argv[]) {
     magic_bytes = (char *)malloc(sizeof(char)*6);
     strncpy(magic_bytes, "\x47\x49\x46\x38\x39\x61", 6);
 
-    write_bytes(&magic_bytes, &code_file, &out_file);
+    write_bytes(&magic_bytes, &in_file, &out_file);
 
-    fclose(code_file);
+    fclose(in_file);
     fclose(out_file);
 
     return 0;
