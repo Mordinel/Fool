@@ -28,7 +28,6 @@ int main(int argc, char *argv[]) {
     FILE *in_file;
     FILE *out_file;
     char *magic_bytes;
-    int in_file_length;
 
     if (argc != 3) {
         fprintf(stderr, "Usage:\n%s [IN_FILE] [OUT_FILE.EXTENSION]\n", argv[0]);
