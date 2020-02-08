@@ -20,7 +20,12 @@ The following extensions types are currently supported by fool:
 
 ## Building
 ```
-gcc -W -Wall -pedantic -g src/fool.c -o fool
+make
+```
+
+## Building with debug information
+```
+make debug
 ```
 
 ## References
