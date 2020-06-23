@@ -105,7 +105,7 @@ bool Fool::openFileIfPossible(char* path, FILE* file)
 /**
  * Allocates the memory needed for the magic bytes.
  */
-void Fool::allocateMagicBytes(char* magicBytes, char* bytes)
+void Fool::allocateMagicBytes(char* magicBytes, const char* bytes)
 {
     int bytesLen;
 
