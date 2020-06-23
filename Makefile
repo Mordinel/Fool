@@ -1,3 +1,3 @@
 all:
-	g++ ./src/fool.c -o fool
+	g++ ./src/* -o fool
 
