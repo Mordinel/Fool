@@ -17,15 +17,17 @@ private:
     char* magicBottom;
     char* extension;
 
-    bool openFileIfPossible(char* path, FILE* file);
+    FILE*  openFileIfPossible(char* path, const char* mode);
+    FILE*  openFileInReadModeIfPossible(char* path);
+    FILE*  openFileInWriteModeIfPossible(char* path);
+    char* allocateMagicBytes(const char* bytes);
     bool setExtension(char* str);
-    void allocateMagicBytes(char* magicBytes, const char* bytes);
     bool loadMagicBytes();
 public:
     Fool(char* inPath, char* outPath);
     ~Fool();
-    bool SetInFile(char* inPath);
-    bool SetOutFile(char* outPath);
+    void SetInFile(char* inPath);
+    void SetOutFile(char* outPath);
     bool WriteFile();
 };
 
