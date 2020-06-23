@@ -20,13 +20,13 @@ private:
     bool openFileIfPossible(char* path, FILE* file);
     bool setExtension(char* str);
     void allocateMagicBytes(char* magicBytes, char* bytes);
-    void loadMagicBytes();
+    bool loadMagicBytes();
 public:
     Fool(char* inPath, char* outPath);
     ~Fool();
-    void SetInPath(char* inPath);
-    void SetOutPath(char* outPath);
-    void WriteFile();
+    bool SetInFile(char* inPath);
+    bool SetOutFile(char* outPath);
+    bool WriteFile();
 };
 
 #endif

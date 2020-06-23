@@ -8,6 +8,8 @@ Fool::Fool(char* inPath, char* outPath)
     this->magicBottom = NULL;
     this->extension = NULL;
 
+    setInFile(inPath);
+    setOutFile(outPath);
     setExtension(outPath);
 }
 
@@ -87,3 +89,78 @@ void Fool::allocateMagicBytes(char* magicBytes, char* bytes)
     std::strncpy(magicBytes, bytes, bytesLen);
 }
 
+/**
+ * Loads magic bytes into the magicTop and magicBottom buffers based on the class field extension.
+ */
+bool Fool::loadMagicBytes()
+{
+    int i;
+    bool ret = true;
+
+    // if magicTop or magicBottom is not null, free it and set it to null;
+    if (this->magicTop != NULL) {
+        std::free(this->magicTop);
+        this->magicTop = NULL:
+    }
+    if (this->magicBottom != NULL) {
+        std::free(this->magicBottom);
+        this->magicBottom = NULL;
+    }
+
+    // if extension isn't set, return false
+    if (this->extension == NULL) {
+        return false;
+    }
+
+    int extensionLen = std::strlen(this->extension);
+    
+    // convert the extension string to lowercase.
+    char* extensionLower = (char*)malloc(sizeof(char) * extensionLen);
+    for (i = 0; i < extensionLen; i++) {
+        extensionLower[i] = std::tolower(this->extension[i]);
+    }
+
+    // allocate magic bytes based on the extension string.
+    if (std::strncmp(extensionLower, "gif", 4)) {
+        allocateMagicBytes(this->magicTop, GIF_BYTES);
+
+    } else if (std::strncmp(extensionLower, "jpg", 4) ||
+               std::strncmp(extensionLower, "jpe", 4) ||
+               std::strncmp(extensionLower, "jpeg", 5)) {
+        allocateMagicBytes(this->magicTop, JPG_BYTES);
+
+    } else if (std::strncmp(extensionLower, "png", 4)) {
+        allocateMagicBytes(this->magicTop, PNG_BYTES);
+        allocateMagicBytes(this->magicBottom, PNG_TRAILER);
+
+    } else {
+        ret = false;
+    }
+
+    std::free(extensionLower);
+
+    return ret;
+}
+
+/**
+ * Setter for in file
+ * Returns the return value of the openFileIfPossible function.
+ */
+bool Fool::SetInFile(char* inPath)
+{
+    return openFileIfPossible(inPath, this->inFile);
+}
+
+/**
+ * Setter for out file.
+ * Return true if setExtension and openFileIfPossible succeed.
+ */
+bool Fool::SetOutFile(char* outPath)
+{
+    if (setExtension(outPath) &&
+        openFileIfPossible(outPath, this->outFile)) {
+        return true; 
+    }
+
+    return false;
+}
