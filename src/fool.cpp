@@ -38,6 +38,7 @@ bool Fool::setExtension(char* str)
     // if there is no extension, return leaving extension = NULL
     if (extStart == -1) return false;
 
+    // allocate new memory for the extension string
     strLen = std::strlen(str);
     this->extension = (char*)malloc(sizeof(char) * (strLen - extStart));
 
@@ -46,4 +47,25 @@ bool Fool::setExtension(char* str)
     }
 
     return true;
+}
+
+/**
+ * Opens file at path if possible and returns true if file opened successfully.
+ */
+bool openFileIfPossible(char* path, FILE* file)
+{
+    // if the file isn't null, close it and set it to NULL
+    if (file != NULL) {
+        std::fclose(file);
+        file = NULL;
+    }
+
+    // if the file at path is there and readable, open it in read mode
+    if(std::access(path, (F_OK|R_OK)) == -1) {
+        file = NULL;
+        return false;
+    } else {
+        file = std::fopen(path, "r");
+        return true;
+    }
 }

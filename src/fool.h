@@ -17,8 +17,8 @@ private:
     char* magicBottom;
     char* extension;
 
-    void openFileIfPossible(char* path, FILE* file);
-    void setExtension(char* str);
+    bool openFileIfPossible(char* path, FILE* file);
+    bool setExtension(char* str);
     void loadMagicBytes();
 public:
     Fool(char* inPath, char* outPath);
