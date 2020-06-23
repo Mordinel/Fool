@@ -164,3 +164,39 @@ bool Fool::SetOutFile(char* outPath)
 
     return false;
 }
+
+/**
+ * Attempts to write the new file with the chosen magic bytes.
+ */
+bool Fool::WriteFile()
+{
+    int i;
+    int c;
+
+    // if the magic top bytes, infile or outfile are null, return false, file can't be written.
+    if (this->magicTop == NULL ||
+        this->inFile == NULL ||
+        this->outFile == NULL) {
+        return false;
+    }
+
+    // write the magic top bytes to the outfile.
+    for (i = 0; (c = magicTop[i]) != '\0'; i++) {
+        std::fputc(c, this->outFile);
+    }
+
+    // write the infile bytes to the outfile.
+    while((c = std::fgetc(this->inFile)) != '\0') {
+        std::fputc(c, this->outFile);
+    }
+
+    // if there is magic bottom bytes to be writ, write them to the outfile.
+    if (magicBottom != NULL) {
+        for (i = 0; (c = magicBottom[i]) != '\0'; i++) {
+            std::fputc(c, this->outFile);
+        }
+    }
+    
+    return true;
+}
+
