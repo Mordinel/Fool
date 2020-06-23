@@ -23,10 +23,5 @@ The following extensions types are currently supported by fool:
 make
 ```
 
-## Building with debug information
-```
-make debug
-```
-
 ## References
 [File Signature List](https://www.garykessler.net/library/file_sigs.html)
