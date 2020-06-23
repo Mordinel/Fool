@@ -19,6 +19,7 @@ private:
 
     bool openFileIfPossible(char* path, FILE* file);
     bool setExtension(char* str);
+    void allocateMagicBytes(char* magicBytes, char* bytes);
     void loadMagicBytes();
 public:
     Fool(char* inPath, char* outPath);

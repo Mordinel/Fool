@@ -52,7 +52,7 @@ bool Fool::setExtension(char* str)
 /**
  * Opens file at path if possible and returns true if file opened successfully.
  */
-bool openFileIfPossible(char* path, FILE* file)
+bool Fool::openFileIfPossible(char* path, FILE* file)
 {
     // if the file isn't null, close it and set it to NULL
     if (file != NULL) {
@@ -69,3 +69,21 @@ bool openFileIfPossible(char* path, FILE* file)
         return true;
     }
 }
+
+/**
+ * Allocates the memory needed for the magic bytes.
+ */
+void Fool::allocateMagicBytes(char* magicBytes, char* bytes)
+{
+    int bytesLen;
+
+    if (magicBytes != NULL) {
+        std::free(magicBytes);
+        magicBytes = NULL;
+    }
+
+    bytesLen = std::strLen(bytes);
+    magicBytes = (char*)malloc(sizeof(char) * bytesLen);
+    std::strncpy(magicBytes, bytes, bytesLen);
+}
+
