@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
 
     if(!fool->WriteFile()) {
         fprintf(stderr, "Could not complete action. Fix your permissions or use a supported file extension.\n");
+        std::remove(argv[2]);
         exit_code = 1;
     }
 
