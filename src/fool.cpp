@@ -92,7 +92,7 @@ bool Fool::openFileIfPossible(char* path, FILE* file)
     }
 
     // if the file at path is there and readable, open it in read mode
-    if(std::access(path, (F_OK|R_OK)) == -1) {
+    if(access(path, (F_OK|R_OK)) == -1) {
         file = NULL;
         return false;
     } else {
@@ -114,7 +114,7 @@ void Fool::allocateMagicBytes(char* magicBytes, char* bytes)
         magicBytes = NULL;
     }
 
-    bytesLen = std::strLen(bytes);
+    bytesLen = std::strlen(bytes);
     magicBytes = (char*)malloc(sizeof(char) * bytesLen);
     std::strncpy(magicBytes, bytes, bytesLen);
 }
@@ -130,7 +130,7 @@ bool Fool::loadMagicBytes()
     // if magicTop or magicBottom is not null, free it and set it to null;
     if (this->magicTop != NULL) {
         std::free(this->magicTop);
-        this->magicTop = NULL:
+        this->magicTop = NULL;
     }
     if (this->magicBottom != NULL) {
         std::free(this->magicBottom);
