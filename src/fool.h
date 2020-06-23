@@ -4,8 +4,8 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-#include <cunistd>
 #include <cctype>
+#include <unistd.h>
 
 #include "signatures.h"
 

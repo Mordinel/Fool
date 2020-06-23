@@ -97,8 +97,9 @@ bool Fool::openFileIfPossible(char* path, FILE* file)
         return false;
     } else {
         file = std::fopen(path, "r");
-        return true;
     }
+    
+    return true;
 }
 
 /**
