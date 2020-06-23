@@ -1,5 +1,8 @@
 #include "fool.h"
 
+/**
+ * Sets all class fields to the default values.
+ */
 Fool::Fool(char* inPath, char* outPath)
 {
     this->inFile = NULL;
@@ -8,9 +11,35 @@ Fool::Fool(char* inPath, char* outPath)
     this->magicBottom = NULL;
     this->extension = NULL;
 
-    setInFile(inPath);
-    setOutFile(outPath);
+    SetInFile(inPath);
+    SetOutFile(outPath);
     setExtension(outPath);
+}
+
+/**
+ * frees memory and closes files.
+ */
+Fool::~Fool()
+{
+    if (this->inFile != NULL) {
+        std::fclose(this->inFile);
+    }
+
+    if (this->outFile != NULL) {
+        std::fclose(this->outFile);
+    }
+
+    if (this->magicTop != NULL) {
+        std::free(this->magicTop);
+    }
+
+    if (this->magicBottom != NULL) {
+        std::free(this->magicBottom);
+    }
+
+    if (this->extension != NULL){
+        std::free(this->extension);
+    }
 }
 
 /**
@@ -172,6 +201,8 @@ bool Fool::WriteFile()
 {
     int i;
     int c;
+
+    loadMagicBytes();
 
     // if the magic top bytes, infile or outfile are null, return false, file can't be written.
     if (this->magicTop == NULL ||
