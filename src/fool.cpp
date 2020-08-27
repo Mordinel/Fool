@@ -5,11 +5,11 @@
  */
 Fool::Fool(char* inPath, char* outPath)
 {
-    this->inFile = NULL;
-    this->outFile = NULL;
-    this->magicTop = NULL;
-    this->magicBottom = NULL;
-    this->extension = NULL;
+    this->inFile = nullptr;
+    this->outFile = nullptr;
+    this->magicTop = nullptr;
+    this->magicBottom = nullptr;
+    this->extension = nullptr;
 
     SetInFile(inPath);
     SetOutFile(outPath);
@@ -20,23 +20,23 @@ Fool::Fool(char* inPath, char* outPath)
  */
 Fool::~Fool()
 {
-    if (this->inFile != 0) {
+    if (this->inFile) {
         std::fclose(this->inFile);
     }
 
-    if (this->outFile != 0) {
+    if (this->outFile) {
         std::fclose(this->outFile);
     }
 
-    if (this->magicTop != 0) {
+    if (this->magicTop) {
         std::free(this->magicTop);
     }
 
-    if (this->magicBottom != 0) {
+    if (this->magicBottom) {
         std::free(this->magicBottom);
     }
 
-    if (this->extension != 0){
+    if (this->extension) {
         std::free(this->extension);
     }
 }
