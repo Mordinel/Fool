@@ -17,9 +17,9 @@ private:
     char* magicBottom;
     char* extension;
 
-    FILE*  openFileIfPossible(char* path, const char* mode);
-    FILE*  openFileInReadModeIfPossible(char* path);
-    FILE*  openFileInWriteModeIfPossible(char* path);
+    FILE* openFileIfPossible(char* path, const char* mode);
+    FILE* openFileInReadModeIfPossible(char* path);
+    FILE* openFileInWriteModeIfPossible(char* path);
     char* allocateMagicBytes(const char* bytes);
     bool setExtension(char* str);
     bool loadMagicBytes();
