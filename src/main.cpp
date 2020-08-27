@@ -3,7 +3,6 @@
 
 int main(int argc, char* argv[]) 
 {
-    Fool* fool;
     int exit_code = 0;
 
     if (argc != 3) {
@@ -11,15 +10,13 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    fool = new Fool(argv[1], argv[2]);
+    Fool fool(argv[1], argv[2]);
 
-    if(!fool->WriteFile()) {
+    if(!fool.WriteFile()) {
         fprintf(stderr, "Could not complete action. Fix your permissions or use a supported file extension.\n");
         std::remove(argv[2]);
         exit_code = 1;
     }
-
-    delete fool;
 
     return exit_code;
 }
