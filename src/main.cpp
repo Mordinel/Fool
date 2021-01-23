@@ -3,8 +3,7 @@
 
 #include "fool.h"
 
-int main(int argc, char* argv[]) 
-{
+int main(int argc, char* argv[]) {
     int exitCode = 1;
 
     if (argc != 3) {
