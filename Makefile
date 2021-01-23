@@ -1,8 +1,7 @@
 CC=clang++
-CFLAGS=-std=c++14 -g -Wall
+CFLAGS=-std=c++17 -g -Wall
 
 SOURCES=src/*.cpp
-
 OUTFILE=fool
 
 .PHONY: all clean

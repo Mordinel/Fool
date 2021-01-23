@@ -1,22 +1,22 @@
 #include <iostream>
+#include <string>
+
 #include "fool.h"
 
 int main(int argc, char* argv[]) 
 {
-    int exit_code = 0;
+    int exitCode = 1;
 
     if (argc != 3) {
-        fprintf(stderr, "Usage:\n%s <in file> <out file.extension>\n", argv[0]);
-        return 1;
+        std::cerr << "Usage:\n" << argv[0] << " <in file> <out file.extension>" << std::endl;
+        return exitCode;
     }
 
-    Fool fool(argv[1], argv[2]);
-
-    if(!fool.WriteFile()) {
-        fprintf(stderr, "Could not complete action. Fix your permissions or use a supported file extension.\n");
-        std::remove(argv[2]);
-        exit_code = 1;
+    if (fool::WriteFile(argv[1], argv[2])) {
+        exitCode = 0; // succeeded
+    } else {
+        exitCode = 1; // failed
     }
 
-    return exit_code;
+    return exitCode;
 }
