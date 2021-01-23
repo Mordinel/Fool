@@ -4,7 +4,7 @@ bool fool::WriteFile(std::filesystem::path inPath, std::filesystem::path outPath
     std::ifstream inFile(inPath);
     std::string inFileData;
 
-    if (inFile) {
+    if (inFile && std::filesystem::is_regular_file(inPath)) {
         inFileData = std::string(
                 std::istreambuf_iterator<char>(inFile),
                 std::istreambuf_iterator<char>());
