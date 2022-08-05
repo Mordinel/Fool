@@ -10,7 +10,7 @@ target/release/fool [IN_FILE] [OUT_FILE.EXTENSION]
 In order to select a mime type, use the corresponding file extension commonly seen for that filetype.
 eg:
 ```
-./fool payload.php payload.png
+target/release/fool payload.php payload.png
 ```
 
 The following extensions types are currently supported by fool:
