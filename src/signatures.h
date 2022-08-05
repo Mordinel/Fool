@@ -1,9 +1,0 @@
-#ifndef SIGNATURES_H
-#define SIGNATURES_H
-
-#define GIF_HEAD "\x47\x49\x46\x38\x39\x61"
-#define JPG_HEAD "\xFF\xD8"
-#define PNG_HEAD "\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
-#define PNG_TAIL "\x49\x45\x4E\x44\xAE\x42\x60\x82"
-
-#endif

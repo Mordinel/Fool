@@ -5,7 +5,7 @@ Fool is a program designed to spoof mime types on text files using magic bytes i
 
 ## Usage
 ```
-./fool [IN_FILE] [OUT_FILE.EXTENSION]
+target/release/fool [IN_FILE] [OUT_FILE.EXTENSION]
 ```
 In order to select a mime type, use the corresponding file extension commonly seen for that filetype.
 eg:
@@ -15,12 +15,12 @@ eg:
 
 The following extensions types are currently supported by fool:
 - gif
-- jpg, jpe, jpeg
+- jpg
 - png
 
 ## Building
 ```
-make
+cargo build --release
 ```
 
 ## References
