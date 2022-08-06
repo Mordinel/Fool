@@ -9,12 +9,11 @@ struct Magic {
 }
 
 fn get_magicks() -> HashMap<&'static str, Magic> {
-    let magic = HashMap::<&'static str, Magic>::from([
+    HashMap::<&'static str, Magic>::from([
         ("gif", Magic { head: b"\x47\x49\x46\x38\x39\x61".to_vec(), tail: b"".to_vec() }),
         ("jpg", Magic { head: b"\xFF\xD8".to_vec(), tail: b"".to_vec() }),
         ("png", Magic { head: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A".to_vec(), tail: b"\x49\x45\x4E\x44\xAE\x42\x60\x82".to_vec() }),
-    ]);
-    return magic;
+    ])
 }
 
 pub fn write_file(in_file_path: &Path, out_file_path: &Path) -> String {
